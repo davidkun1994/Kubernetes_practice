@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: shop.127.0.0.1.xip.io
+  namespace: cafe-shop
+spec:
+  rules:
+  - host: shop.127.0.0.1.xip.io
+    http:
+      paths:
+      - backend:
+          service:
+            name: coffee-svc
+            port:
+              number: 80
+        path: /coffee
+        pathType: Prefix
+  - host: shop.127.0.0.1.xip.io
+    http:
+      paths:
+      - backend:
+          service:
+            name: tea-svc
+            port:
+              number: 80
+        path: /tea
+        pathType: Prefix
